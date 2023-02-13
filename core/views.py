@@ -42,7 +42,8 @@ similarity = {
     "data_scientist":["software_engineer","software_developer","mobile_app_developer","data_scientist","data_analyst","data_engineer","computer_vision_engineer"],
     "mobile_app_developer":["research_intern","software_engineer","software_developer","mobile_app_developer","full_stack_developer","test_analyst"],
     "test_analyst":["test_analyst","java_developer","full_stack_developer","software_engineer","software_developer","mobile_app_developer"],
-    "software_developer":["software_developer","test_analyst","java_developer","full_stack_developer","software_engineer","mobile_app_developer"]
+    "software_developer":["software_developer","test_analyst","java_developer","full_stack_developer","software_engineer","mobile_app_developer"],
+    "software_engineer":["software_developer","test_analyst","java_developer","full_stack_developer","software_engineer","mobile_app_developer"]
 }
 bachelors = ["btech-",'btech','b.tech','b. tech','b tech','b. tech','bachelor of engineering','be','b.e','b . e','b.e',
              'b e','bachelor technology','bachelor degree','bachelors degree',"bachelor science",'bachelors',"bs",'b.s',
