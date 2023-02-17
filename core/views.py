@@ -10,12 +10,12 @@ from pymongo import MongoClient
 from django.core.mail import EmailMessage, get_connection
 
 #MoNGODB CONNECTION
-try:
+if True:
     client = MongoClient("mongodb+srv://vinubalan:vinubalan@resumes-cluster.7j616me.mongodb.net/?retryWrites=true&w=majority")
     db = client.test
     print("connected to mongo")
     resumes_db = db['resumes']
-except:
+else:
     print("Connection Failed")
 # Create your views here.
 jobRolesList = []

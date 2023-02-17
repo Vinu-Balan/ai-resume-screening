@@ -1,17 +1,10 @@
 from .pdf_to_text import convert_to_text
 from .docx_to_text import docx_to_text
-from resume_parser import resumeparse
 import locationtagger
-import os
 import re
-import os
 import nltk
-import spacy
 from spacy.matcher import Matcher
-import json
-import datetime
 import spacy
-from spacy import displacy
 
 PHONE_REG = re.compile(r'[\+\(]?[1-9][0-9 .\-\(\)]{7,}[0-9]')
 
@@ -1034,46 +1027,46 @@ class ParserModel:
                 print("unsupported file")
                 return
 
-        try:
-            data = resumeparse.read_file(file_name)
-        except:
-            data = {"name":[],'university':[]}
-        if len(data['name'])<=1 or 'name' in data['name'].lower().split() or 'objective' in data['name'].lower() or 'summary' in data['name'].lower() or 'vitae' in data['name'].lower() or 'experience' or 'andhra' in data['name'].lower() in data['name'].lower() or 'skills' in data['name'].lower() or 'education' in data['name'].lower() or 'linkedin' in data['name'].lower() or 'email' in data['name'].lower() or 'developer' in data['name'].lower() or 'resume' in data['name'].lower() or 'professional' in data['name'].lower() or 'java' in data['name'].lower() or 'email' in data['name'].lower() or 'mobile' in data['name'].lower():
-            name = extract_name(resume_text)
+        # try:
+        #     data = resumeparse.read_file(file_name)
+        # except:
+        #     data = {"name":[],'university':[]}
+        # if len(data['name'])<=1 or 'name' in data['name'].lower().split() or 'objective' in data['name'].lower() or 'summary' in data['name'].lower() or 'vitae' in data['name'].lower() or 'experience' or 'andhra' in data['name'].lower() in data['name'].lower() or 'skills' in data['name'].lower() or 'education' in data['name'].lower() or 'linkedin' in data['name'].lower() or 'email' in data['name'].lower() or 'developer' in data['name'].lower() or 'resume' in data['name'].lower() or 'professional' in data['name'].lower() or 'java' in data['name'].lower() or 'email' in data['name'].lower() or 'mobile' in data['name'].lower():
+        name = extract_name(resume_text)
 
-        else:
-            name = data['name']
-            nlp_text = nlp(name)
-            pattern = [{'POS': 'PROPN'}]
-
-            matcher.add('NAME', None, pattern)
-
-            matches = matcher(nlp_text)
-            names = []
-            for match_id, start, end in matches:
-                span = nlp_text[start:end]
-                names.append(span.text)
-            if len(names)==0:
-                name = extract_name(resume_text)
-        if len(name.split()) > 5:
-            temp_text = resume_text
-            temp_list = resume_text.split("\n")
-            temp_text = temp_list[0].replace("  ","-")
-            temp_text = temp_text.replace(" ","")
-            temp_text = temp_text.replace("-"," ")
-            name = temp_text
-        if len(name)<=1:
-            try:
-                name = resume_text.split()
-                name = " ".join(name[:2])
-            except:
-                name = resume_text[:30]
-        split_names = name.split(" ")
-        try:
-            if len(split_names[0])==1 or len(split_names[1])==1:
-                name = ".".join(split_names[:2])
-        except:
-            name = " ".join(split_names[:2])
+        # else:
+        #     name = data['name']
+        #     nlp_text = nlp(name)
+        #     pattern = [{'POS': 'PROPN'}]
+        #
+        #     matcher.add('NAME', None, pattern)
+        #
+        #     matches = matcher(nlp_text)
+        #     names = []
+        #     for match_id, start, end in matches:
+        #         span = nlp_text[start:end]
+        #         names.append(span.text)
+        #     if len(names)==0:
+        #         name = extract_name(resume_text)
+        # if len(name.split()) > 5:
+        #     temp_text = resume_text
+        #     temp_list = resume_text.split("\n")
+        #     temp_text = temp_list[0].replace("  ","-")
+        #     temp_text = temp_text.replace(" ","")
+        #     temp_text = temp_text.replace("-"," ")
+        #     name = temp_text
+        # if len(name)<=1:
+        #     try:
+        #         name = resume_text.split()
+        #         name = " ".join(name[:2])
+        #     except:
+        #         name = resume_text[:30]
+        # split_names = name.split(" ")
+        # try:
+        #     if len(split_names[0])==1 or len(split_names[1])==1:
+        #         name = ".".join(split_names[:2])
+        # except:
+        #     name = " ".join(split_names[:2])
         #
         number = extract_phone_number(resume_text)
         email = extract_email(resume_text)
@@ -1088,16 +1081,13 @@ class ParserModel:
         marital_status = extract_status(resume_text)
         location = extract_location(resume_text)
         print("location: "+location)
-        if data['university']==[]:
-            found_institution = get_institution(resume_text,True)
-        else:
-            found_institution = get_institution(resume_text, False)
+        found_institution = get_institution(resume_text, False)
         graduation_year = get_graduation(resume_text,education[1])
         projects = extract_projects(resume_text)
-        if data['university']!= []:
-            for i in data['university']:
-                found_institution.append(i.title())
-            found_institution  = list(set(found_institution))
+        # if data['university']!= []:
+        #     for i in data['university']:
+        #         found_institution.append(i.title())
+        found_institution  = list(set(found_institution))
         # print(resume_text)
         degree = extract_stream(resume_text,education[0])
         json_dict = {"file_name":file_name,
