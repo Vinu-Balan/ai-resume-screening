@@ -2,7 +2,7 @@
 
 https://user-images.githubusercontent.com/73393530/219868214-24857824-6452-4914-b6b3-a5f3e1fdcc0e.mp4
 
-#Tech Stack
+# Tech Stack
 - Python
 - Django
 - MongoDB
@@ -10,7 +10,7 @@ https://user-images.githubusercontent.com/73393530/219868214-24857824-6452-4914-
 - nltk
 - spacy
 
-#Features
+# Features
 - Responsive
 - Uploading Resumes
 - Checking resume scores
